@@ -1,0 +1,104 @@
+// Nav
+
+.search__field {
+  padding: 4px;
+}
+
+.nav-box {
+  border: 1px solid $color-grey-light-3;
+}
+
+.logo:visited,
+:link {
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 2rem;
+}
+
+.bookmarks {
+  cursor: pointer;
+}
+
+// RESULTS
+
+.preview {
+  height: 6rem;
+  display: grid;
+  grid-template-columns: 20% 80%;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  &__marker {
+    @include gridCentering;
+  }
+
+  &__info {
+    @include gridCentering;
+
+    &--name {
+    }
+
+    &--address {
+      margin-top: 1rem;
+    }
+  }
+}
+
+// Button
+
+.btn {
+  padding: 0.5rem 2rem;
+  border: 1px solid $color-grey-light-3;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  }
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+}
+
+// Bookmarks
+
+.bookmarks {
+  padding: 1rem 5rem;
+  position: relative;
+  align-items: stretch;
+
+  &__list {
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    font-size: 1.6rem;
+    background-color: $color-grey-light-2;
+    position: absolute;
+    top: 6.3rem;
+    right: 0;
+    list-style: none;
+    transition: all 0.3s;
+
+    &--name {
+      padding: 3rem 2rem;
+
+      width: 100%;
+      &:hover {
+        background-color: $color-grey-light-3;
+      }
+    }
+  }
+
+  &:hover &__list {
+    transition-delay: 0s;
+    visibility: visible;
+    opacity: 1;
+  }
+}

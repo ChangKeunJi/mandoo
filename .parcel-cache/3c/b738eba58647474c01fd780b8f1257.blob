@@ -1,0 +1,4 @@
+require("core-js/stable");
+require("regenerator-runtime/runtime");
+// Convert async await to ES5
+console.log("hello");

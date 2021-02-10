@@ -1,0 +1,50 @@
+$color-grey-light-1: #f9f5f3; // Light background
+$color-grey-light-2: #f2efee; // Light lines
+$color-grey-light-3: #d3c7c3; // Light text (placeholder)
+
+$color-black: #000;
+
+@mixin gridCentering {
+  justify-self: center;
+  align-self: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  line-height: 1.6;
+  font-weight: 400;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-grey-light-2,
+    $color-grey-light-3
+  );
+}
+
+// body {
+//   font-family: "Nunito Sans", sans-serif;
+//   font-weight: 400;
+//   line-height: 1.6;
+//   color: $color-grey-dark-1;
+//   background-image: $gradient;
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   min-height: calc(100vh - 2 * 4vw);
+// }

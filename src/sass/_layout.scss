@@ -1,0 +1,49 @@
+.container {
+  margin: 5rem 15rem;
+  height: 80vh;
+  min-height: 50rem;
+  min-width: 80rem;
+  background-color: $color-grey-light-1;
+}
+
+.header {
+  height: 100%;
+  font-size: 2rem;
+  height: 15%;
+  box-shadow: 0 0.7rem 1rem rgba($color-black, 0.1);
+
+  .nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 3rem;
+  }
+}
+.content {
+  height: 85%;
+  display: flex;
+
+  .results {
+    height: 100%;
+    width: 25%;
+    border-right: solid 1px $color-black;
+
+    &-container {
+      list-style: none;
+      height: 80%;
+    }
+
+    &-pagination {
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+
+  #map {
+    height: 100%;
+    width: 75%;
+  }
+}
