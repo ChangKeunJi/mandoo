@@ -1,18 +1,29 @@
 import "core-js/stable"; // Convert new features to ES5
 import "regenerator-runtime/runtime"; // Convert async await to ES5
+import { async } from "regenerator-runtime";
 
-document.querySelector(".form").addEventListener("submit", (e) => {
-  console.log("heloo");
-});
+import * as model from "./model.js";
+import view from "./view/View.js";
+
+const controlPosition = async function () {
+  await model.getLocation();
+};
+
+function init() {
+  view.addHandlerRender(controlPosition);
+}
+
+init();
 
 /*
+
 // 마커를 담을 배열입니다
 var markers = [];
 
 var mapContainer = document.getElementById("map"), // 지도를 표시할 div
   mapOption = {
     center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-    level: 3, // 지도의 확대 레벨
+    level: 4, // 지도의 확대 레벨
   };
 
 // 지도를 생성합니다
@@ -31,7 +42,7 @@ document.querySelector(".form").addEventListener("submit", searchPlaces);
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces(e) {
   e.preventDefault();
-  var keyword = document.getElementById("keyword").value;
+  var keyword = document.querySelector(".search__field").value;
 
   if (!keyword.replace(/^\s+|\s+$/g, "")) {
     alert("키워드를 입력해주세요!");
@@ -44,6 +55,7 @@ function searchPlaces(e) {
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
+  console.log(data);
   if (status === kakao.maps.services.Status.OK) {
     // 정상적으로 검색이 완료됐으면
     // 검색 목록과 마커를 표출합니다

@@ -24,7 +24,7 @@
 .preview {
   height: 6rem;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 25% 75%;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -87,7 +87,7 @@
     transition: all 0.3s;
 
     &--name {
-      padding: 3rem 2rem;
+      padding: 1rem 2rem;
 
       width: 100%;
       &:hover {
@@ -97,7 +97,6 @@
   }
 
   &:hover &__list {
-    transition-delay: 0s;
     visibility: visible;
     opacity: 1;
   }
