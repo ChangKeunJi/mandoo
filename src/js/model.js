@@ -1,40 +1,46 @@
-import { getCoordinates } from "./helper.js";
+// import { search } from "core-js/fn/symbol";
+import { getCoordinates, searchPlaces } from "./helper.js";
 
 export const state = {
   mapObject: {},
-  currentPosition: [],
-};
-
-// Generates Map Object
-const renderMap = function (lat, lng) {
-  const mapContainer = document.getElementById("map"), // 지도를 표시할 div
-    mapOption = {
-      center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
-      level: 5, // 지도의 확대 레벨
-    };
-
-  // 지도를 생성합니다
-  const map = new kakao.maps.Map(mapContainer, mapOption);
-
-  state.mapObject = map;
+  position: [],
+  search: {
+    query: "",
+    results: [],
+    page: 1,
+    resultsPerPage: 5,
+  },
 };
 
 // Updating a Current position or default position
 export const getLocation = async function () {
   try {
     const response = await getCoordinates();
-    // console.log(response);
 
-    state.currentPosition = [
-      response.coords.latitude,
-      response.coords.longitude,
-    ];
-    console.log(state.currentPosition);
-
-    renderMap(state.currentPosition[0], state.currentPosition[1]);
+    state.position = [response.coords.latitude, response.coords.longitude];
   } catch (_) {
-    // console.log(err);
-    state.currentPosition = [37.259404626114815, 127.08043107361158];
-    renderMap(state.currentPosition[0], state.currentPosition[1]);
+    state.position = [37.259404626114815, 127.08043107361158];
+  }
+};
+
+// Updating Search results
+export const getResults = async function (query) {
+  try {
+    state.search.query = query;
+
+    const response = await searchPlaces(query);
+    // { data, status, pagination }
+
+    console.log(response);
+
+    if (response.status === "OK") {
+      state.search.results = response.data;
+
+      history.pushState(null, null, `/${query}`);
+    } else {
+      throw new Error(response.status);
+    }
+  } catch (err) {
+    throw err;
   }
 };

@@ -1,13 +1,13 @@
 .container {
-  margin: 5rem 15rem;
   height: 80vh;
+  width: 80vw;
   min-height: 50rem;
-  min-width: 80rem;
+  min-width: 99rem;
   background-color: $color-grey-light-1;
+  border-radius: 1rem;
 }
 
 .header {
-  height: 100%;
   font-size: 2rem;
   height: 15%;
   box-shadow: 0 0.7rem 1rem rgba($color-black, 0.1);
@@ -25,6 +25,7 @@
   display: flex;
 
   .results {
+    overflow: hidden;
     height: 100%;
     width: 25%;
     border-right: solid 1px $color-black;
@@ -35,7 +36,7 @@
     }
 
     &-pagination {
-      height: 20%;
+      height: 15%;
       display: flex;
       align-items: center;
       justify-content: space-around;
