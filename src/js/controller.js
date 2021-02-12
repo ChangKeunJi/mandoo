@@ -48,7 +48,7 @@ const constrolSearch = async function (e) {
     resultsView.renderResults(model.state.search.results);
 
     // Render Pagination
-    paginationView.renderPages(model.state.pagination);
+    // paginationView.renderPages(model.state.pagination);
   } catch (err) {
     console.log(err);
   }

@@ -197,6 +197,7 @@ function displayPagination(pagination) {
     if (i === pagination.current) {
       el.className = "on";
     } else {
+      // 왜 클릭 이벤트를 이런식으로 호출 할까??
       el.onclick = (function (i) {
         return function () {
           pagination.gotoPage(i);

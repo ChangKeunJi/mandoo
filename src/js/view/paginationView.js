@@ -3,9 +3,9 @@ import icons from "../../img/icons.svg";
 
 class paginationView extends View {
   parentEl = document.querySelector(".results-pagination");
+  pages;
 
   renderPages(pagination) {
-    console.log("WORK??");
     // var paginationEl = document.getElementById("pagination")
     const fragment = document.createDocumentFragment();
     let i;
@@ -17,23 +17,45 @@ class paginationView extends View {
 
     for (i = 1; i <= pagination.last; i++) {
       var el = document.createElement("a");
+      //   el.href = `#${i}`;
       el.href = "#";
       el.innerHTML = i;
+      el.classList.add("page");
 
       if (i === pagination.current) {
-        el.className = "on";
+        el.classList.add("on");
       } else {
-        el.onclick = (function (i) {
-          console.log("clicked!!");
-          return function () {
-            pagination.gotoPage(i);
-          };
-        })(i);
+        el.addEventListener("click", (i) => {
+          pagination.gotoPage(i);
+          console.log(pagination);
+        });
+
+        //   el.onclick = (function (i) {
+        //     return function () {
+        //       console.log("clicked!");
+        //       pagination.gotoPage(i);
+        //     };
+        //   })(i);
       }
 
       fragment.appendChild(el);
     }
     this.parentEl.appendChild(fragment);
+
+    // this.pages = Array.from(this.parentEl.childNodes);
+  }
+
+  pageClickEvent(pagination, i) {
+    this.pages.forEach((page) => {
+      page.addEventListener("click", () => {
+        if (i === pagination.current) {
+          page.classList.add("on");
+        } else {
+          console.log(i);
+          pagination.gotoPage(i);
+        }
+      });
+    });
   }
 }
 
