@@ -3,31 +3,30 @@ import View from "./View.js";
 class markerView extends View {
   markers = [];
   map;
+  bounds;
 
   renderMarkers(results) {
-    const map = this.mapInstance();
-    this.map = map;
-    let bounds = new kakao.maps.LatLngBounds();
+    this.removeMarker();
+
+    this.map = this.mapInstance();
+    this.bounds = new kakao.maps.LatLngBounds();
+
+    this.removeMarker();
 
     results.forEach((result, i) => {
       // 마커를 생성하고 지도에 표시합니다
-
       const placePosition = new kakao.maps.LatLng(result.y, result.x);
       const marker = this.addMarker(placePosition, i);
-      //   const itemEl = getListItem(i, results[i]);
-
-      // 검색 결과 항목 Element를 생성합니다
-      //   bounds = new kakao.maps.LatLngBounds();
+      // const itemEl = getListItem(i, results[i]);
 
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
       // LatLngBounds 객체에 좌표를 추가합니다
-      bounds.extend(placePosition);
-
-      //   const map = this.mapInstance();
-
-      //   this.map = map;
+      this.bounds.extend(placePosition);
     });
-    this.map.setBounds(bounds);
+
+    this.map.setBounds(this.bounds);
+
+    console.log(this.markers);
   }
 
   addMarker(position, idx, title) {
@@ -49,6 +48,13 @@ class markerView extends View {
     this.markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
     return marker;
+  }
+
+  removeMarker() {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(null);
+    }
+    this.markers = [];
   }
 }
 

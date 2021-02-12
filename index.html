@@ -61,6 +61,9 @@
                 <div class="preview__info--name">Restaurant Name</div>
                 <div class="preview__info--address">Restaurant Address</div>
               </div>
+              <svg class="preview__bookmark--icon">
+                <use xlink:href="./src/img/icons.svg#icon-star-empty"></use>
+              </svg>
             </li>
             <li class="preview">
               <div class="preview__marker">Marker</div>
@@ -68,6 +71,9 @@
                 <div class="preview__info--name">Restaurant Name</div>
                 <div class="preview__info--address">Restaurant Address</div>
               </div>
+              <svg class="preview__bookmark--icon">
+                <use xlink:href="./src/img/icons.svg#icon-star-empty"></use>
+              </svg>
             </li>
             <li class="preview">
               <div class="preview__marker">Marker</div>
@@ -92,12 +98,14 @@
             </li>
           </ul>
           <div class="results-pagination">
-            <button class="btn results__btn results__btn--prev">PREV</button>
+            <!-- <button class="btn results__btn results__btn--prev">PREV</button>
             <div class="results__pages"></div>
-            <button class="btn results__btn results__btn--next">NEXT</button>
+            <button class="btn results__btn results__btn--next">NEXT</button> -->
           </div>
         </div>
-        <div id="map">Map</div>
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
       </div>
     </div>
 

@@ -6,6 +6,8 @@ import * as model from "./model.js";
 import mapView from "./view/mapView.js";
 import searchView from "./view/searchView.js";
 import markerView from "./view/markerView.js";
+import resultsView from "./view/resultsView.js";
+import paginationView from "./view/paginationView.js";
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -13,6 +15,12 @@ import markerView from "./view/markerView.js";
 
 const controlPosition = async function () {
   try {
+    // Remove results list
+    resultsView.clear();
+
+    // Render spinner
+    mapView.renderSpinner();
+
     // Get & Updating a Position
     await model.getLocation();
 
@@ -34,6 +42,13 @@ const constrolSearch = async function (e) {
 
     // Render Markers
     markerView.renderMarkers(model.state.search.results);
+
+    // Render Results
+    resultsView.clear();
+    resultsView.renderResults(model.state.search.results);
+
+    // Render Pagination
+    paginationView.renderPages(model.state.pagination);
   } catch (err) {
     console.log(err);
   }

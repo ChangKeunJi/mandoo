@@ -25,9 +25,9 @@
   height: 20%;
   min-height: 10vh;
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 25% 55% 20%;
   border-bottom: 1px solid $color-grey-light-3;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -39,15 +39,30 @@
   }
 
   &__info {
-    @include gridCentering;
+    // @include gridCentering;
+    align-self: center;
 
     &--name {
+    }
+
+    &--address {
+      font-size: 1rem;
     }
   }
 
   &:hover {
     background-color: $color-grey-light-3;
     transform: translateY(-1px);
+  }
+
+  &__bookmark--icon {
+    height: 3rem;
+    width: 3rem;
+    @include gridCentering;
+    transition: all 0.1s;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -123,4 +138,89 @@
       transform: translateY(-1px);
     }
   }
+}
+
+.spinner {
+  margin: 5rem auto;
+  text-align: center;
+  z-index: 99;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  svg {
+    height: 6rem;
+    width: 6rem;
+    animation: rotate 0.5s infinite linear;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.markerbg {
+  // float: left;
+  // position: absolute;
+  width: 36px;
+  height: 37px;
+  // margin: 10px 0 0 10px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+    no-repeat;
+}
+.marker_1 {
+  background-position: 0 -10px;
+}
+.marker_2 {
+  background-position: 0 -56px;
+}
+.marker_3 {
+  background-position: 0 -102px;
+}
+.marker_4 {
+  background-position: 0 -148px;
+}
+.marker_5 {
+  background-position: 0 -194px;
+}
+.marker_6 {
+  background-position: 0 -240px;
+}
+.marker_7 {
+  background-position: 0 -286px;
+}
+.marker_8 {
+  background-position: 0 -332px;
+}
+.marker_9 {
+  background-position: 0 -378px;
+}
+.marker_10 {
+  background-position: 0 -423px;
+}
+.marker_11 {
+  background-position: 0 -470px;
+}
+.marker_12 {
+  background-position: 0 -516px;
+}
+.marker_13 {
+  background-position: 0 -562px;
+}
+.marker_14 {
+  background-position: 0 -608px;
+}
+.marker_15 {
+  background-position: 0 -654px;
 }

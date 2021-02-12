@@ -4,6 +4,7 @@ import { getCoordinates, searchPlaces } from "./helper.js";
 export const state = {
   mapObject: {},
   position: [],
+  pagination: {},
   search: {
     query: "",
     results: [],
@@ -35,8 +36,9 @@ export const getResults = async function (query) {
 
     if (response.status === "OK") {
       state.search.results = response.data;
+      state.pagination = response.pagination;
 
-      history.pushState(null, null, `/${query}`);
+      // history.pushState(null, null, `/${query}`);
     } else {
       throw new Error(response.status);
     }
