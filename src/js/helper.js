@@ -27,6 +27,7 @@ export const searchPlaces = function (query) {
           // displayPlaces(obj.data);
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
+
           resolve(obj);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
           alert("검색 결과가 존재하지 않습니다.");
@@ -64,7 +65,7 @@ function displayPagination(pagination) {
     if (i === pagination.current) {
       el.className = "on";
     } else {
-      // 왜 클릭 이벤트를 이런식으로 호출 할까??
+      // 왜 클릭 이벤트를 이런식으로 호출 할까?
       el.onclick = (function (i) {
         return function () {
           pagination.gotoPage(i);
