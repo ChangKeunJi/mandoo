@@ -69,6 +69,7 @@ function displayPagination(pagination) {
       el.onclick = (function (i) {
         return function () {
           pagination.gotoPage(i);
+          console.log("work??");
         };
       })(i);
     }
