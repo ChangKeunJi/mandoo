@@ -32,13 +32,9 @@ export const getResults = async function (query) {
     const response = await searchPlaces(query);
     // { data, status, pagination }
 
-    console.log(response);
-
     if (response.status === "OK") {
       state.search.results = response.data;
       state.pagination = response.pagination;
-
-      // history.pushState(null, null, `/${query}`);
     } else {
       throw new Error(response.status);
     }

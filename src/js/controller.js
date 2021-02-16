@@ -38,7 +38,6 @@ const constrolSearch = async function (e) {
     // Updating search results
     const query = searchView.getQuery();
     await model.getResults(query);
-    console.log(model.state.search.results);
 
     // Render Markers
     markerView.renderMarkers(model.state.search.results);
@@ -48,6 +47,7 @@ const constrolSearch = async function (e) {
     resultsView.renderResults(model.state.search.results);
 
     // Render Pagination
+    //! Page 넘길때마다 새롭게 api에 요청해야 한다.
     // paginationView.renderPages(model.state.pagination);
   } catch (err) {
     console.log(err);

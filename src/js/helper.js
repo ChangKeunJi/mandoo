@@ -69,7 +69,6 @@ function displayPagination(pagination) {
       el.onclick = (function (i) {
         return function () {
           pagination.gotoPage(i);
-          console.log("work??");
         };
       })(i);
     }
@@ -80,3 +79,6 @@ function displayPagination(pagination) {
 
   console.log(pagination);
 }
+
+//! Page 클릭 할 때 새롭게 api 요청
+// 현재 그 요청한 data를 어떻게 받아올지 방법을 찾아야함.
