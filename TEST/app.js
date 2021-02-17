@@ -32,8 +32,6 @@ function searchPlaces() {
   ps.keywordSearch(keyword, placesSearchCB);
 }
 
-//! Main callback - start -
-
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
   if (status === kakao.maps.services.Status.OK) {
@@ -51,10 +49,6 @@ function placesSearchCB(data, status, pagination) {
     return;
   }
 }
-
-//! Main callback - end -
-
-//! Render Markers & List / Looping - start -
 
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
@@ -83,25 +77,23 @@ function displayPlaces(places) {
     // 마커와 검색결과 항목에 mouseover 했을때
     // 해당 장소에 인포윈도우에 장소명을 표시합니다
     // mouseout 했을 때는 인포윈도우를 닫습니다
+    (function (marker, title) {
+      kakao.maps.event.addListener(marker, "mouseover", function () {
+        displayInfowindow(marker, title);
+      });
 
-    //! Markers hover effect
-    // (function (marker, title) {
-    //   kakao.maps.event.addListener(marker, "mouseover", function () {
-    //     displayInfowindow(marker, title);
-    //   });
+      kakao.maps.event.addListener(marker, "mouseout", function () {
+        infowindow.close();
+      });
 
-    //   kakao.maps.event.addListener(marker, "mouseout", function () {
-    //     infowindow.close();
-    //   });
+      itemEl.onmouseover = function () {
+        displayInfowindow(marker, title);
+      };
 
-    //   itemEl.onmouseover = function () {
-    //     displayInfowindow(marker, title);
-    //   };
-
-    //   itemEl.onmouseout = function () {
-    //     infowindow.close();
-    //   };
-    // })(marker, places[i].place_name);
+      itemEl.onmouseout = function () {
+        infowindow.close();
+      };
+    })(marker, places[i].place_name);
 
     fragment.appendChild(itemEl);
   }
@@ -113,8 +105,6 @@ function displayPlaces(places) {
   // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
   map.setBounds(bounds);
 }
-
-//! Render Markers & List / Looping - end -
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
@@ -197,7 +187,6 @@ function displayPagination(pagination) {
     if (i === pagination.current) {
       el.className = "on";
     } else {
-      // 왜 클릭 이벤트를 이런식으로 호출 할까??
       el.onclick = (function (i) {
         return function () {
           pagination.gotoPage(i);

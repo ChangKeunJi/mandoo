@@ -9,57 +9,48 @@ import markerView from "./view/markerView.js";
 import resultsView from "./view/resultsView.js";
 import paginationView from "./view/paginationView.js";
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
-const controlPosition = async function () {
+const controlMapInstance = async function () {
   try {
-    // Remove results list
-    resultsView.clear();
-
-    // Render spinner
     mapView.renderSpinner();
-
-    // Get & Updating a Position
-    await model.getLocation();
-
-    // Render a Map based on position in State
-    mapView.render(model.state.position);
+    await model.createMapInstance();
+    mapView.removeSpinner();
   } catch (err) {
     console.log(err);
   }
 };
 
-const constrolSearch = async function (e) {
+const controlSearchPlaces = async function (e) {
   try {
     e.preventDefault();
 
-    // Updating search results
     const query = searchView.getQuery();
-    await model.getResults(query);
 
-    // Render Markers
-    markerView.renderMarkers(model.state.search.results);
+    model.searchPlaces(query);
+    resultsView.renderSpinner();
 
-    // Render Results
-    resultsView.clear();
-    resultsView.renderResults(model.state.search.results);
+    setTimeout(() => {
+      resultsView.renderResults(model.state.data);
 
-    // Render Pagination
-    //! Page 넘길때마다 새롭게 api에 요청해야 한다.
-    // paginationView.renderPages(model.state.pagination);
+      // markerView.renderMarkers(model.state.data);
+    }, 500);
   } catch (err) {
     console.log(err);
   }
 };
 
-function init() {
-  // Render A map at first loading
-  mapView.addHandlerRenderMap(controlPosition);
+const controlPages = function (e) {};
 
-  // Submit & Load new Map and search Results
-  searchView.addHandlerSearch(constrolSearch);
-}
+//! -- INIT --
+
+const init = function () {
+  //! CREATE A MAP
+  controlMapInstance();
+
+  //! SUBMIT EVENT
+  searchView.addHandlerSearch(controlSearchPlaces);
+
+  //! Page Button Event
+  paginationView.addHandlerPage(controlPages);
+};
 
 init();

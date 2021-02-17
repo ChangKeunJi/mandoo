@@ -11,8 +11,6 @@ class markerView extends View {
     this.map = this.mapInstance();
     this.bounds = new kakao.maps.LatLngBounds();
 
-    this.removeMarker();
-
     results.forEach((result, i) => {
       // 마커를 생성하고 지도에 표시합니다
       const placePosition = new kakao.maps.LatLng(result.y, result.x);
